@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .newStyle{
+        color: red;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+    }
+    .newStyle2{
+        color: whitesmoke;
+        background-color: rebeccapurple;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<body>
+    <h1 id="model">The OBJECT MODEL</h1>
+    <h2>The setAttribute() Method !</h2>
+    <p>click on "Try it" button to add class to the The OBJECT MODEL</p>
+    <button onclick="change()" ondblclick="change2()">Try iy</button>
+
+    <script>
+        function change(){
+            document.getElementById("model").setAttribute("class","newStyle");
+        }
+        function change2(){
+            document.getElementById("model").setAttribute("class","newStyle2");
+        }
+    </script>
+</body>
+</html>

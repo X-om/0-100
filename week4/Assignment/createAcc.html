@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #303030;
+    }
+
+    .card {
+        width: 15vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(245, 245, 245, 0.701);
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .head {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .info {
+        all: unset;
+        background-color: #303030;
+        color: whitesmoke;
+        width: 200px;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .bt {
+        margin: 20px;
+        padding: 10px;
+        border: none;
+        width: 150px;
+        transition: background-color 0.3s ease-in;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .bt:hover {
+        background-color: rgba(0, 110, 255, 0.805);
+        color: whitesmoke;
+    }
+
+    .error {
+        border: 2px solid red;
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    .result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        font-size: 25px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .invalidInput {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #303030db;
+        font-size: medium;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .err {
+        color: red;
+    }
+
+    .ok {
+        color: green;
+    }
+    .linkToLogin{
+        all: unset;
+        cursor: pointer;
+        visibility: hidden;
+        transition: 0.1s ease;
+    }
+    .linkToLogin:hover{
+        color: rgb(0, 119, 255);
+    }
+    .visible{
+        visibility: visible;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="card">
+            <div class="head">
+                <h1>Sign Up</h1>
+            </div>
+            <div class="inputs">
+                <input id="fName" class="info" type="text" placeholder="First Name" required>
+                <input id="lName" class="info" type="text" placeholder="Last Name" required>
+                <input id="pNo" class="info" type="text" placeholder="Contact Number" required>
+                <input id="email" class="info" type="text" placeholder="Email Address" required>
+                <input id="username" class="info" type="text" placeholder="Username" required>
+                <input id="password" class="info" type="password" placeholder="Password" required>
+                <input id="cPassword" class="info" type="password" placeholder="Confirm Password" required>
+                <button class="bt" onclick="createUser()">Create Account</button>
+                <div class="result"></div>
+                <a class="linkToLogin" href="login.html">Log-In Page</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    
+    <script>
+        async function createUser() {
+            const ans = document.querySelector(".result");
+            ans.innerHTML = "";
+
+            const arr = document.querySelectorAll(".info");
+                arr.forEach(elm => {
+                    elm.classList.remove("error");
+                    elm.classList.add("info");
+                });
+
+            const fName = document.getElementById("fName");
+            const lName = document.getElementById("lName");
+            const pNo = document.getElementById("pNo");
+            const email = document.getElementById("email");
+            const username = document.getElementById("username");
+            const password = document.getElementById("password");
+            const cPassword = document.getElementById("cPassword");
+
+
+            const formData = {
+                fName: fName.value,
+                lName: lName.value,
+                pNo: pNo.value,
+                email: email.value,
+                username: username.value,
+                password: password.value,
+                cPassword: cPassword.value
+            };
+
+
+            const response = await fetch("http://localhost:3000/create-user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.status == 400) {
+               
+
+                let index = 1;
+                result.errors.forEach(error => {
+                    const element = document.getElementById(error.path);
+                    if (element) {
+                        element.classList.add("error");
+                    }
+                });
+                console.log(result.errors.length);
+                for (let i = 0; i < result.errors.length; i++) {
+                    const text = document.createTextNode(`${index} ${result.errors[i].message}`);
+                    const br = document.createElement("br");
+                    ans.appendChild(text);
+                    ans.appendChild(br);
+                    ans.classList.add("invalidInput");
+                    index++;
+                }
+            }
+            else {
+
+                if (response.status == 409 || response.status == 500) {
+                    ans.innerHTML = result.msg;
+                    ans.classList.add("err");
+                }
+                else if (response.status == 200) {
+                    ans.innerHTML = result.msg;
+                    ans.classList.add("ok");
+                    const link = document.querySelector(".linkToLogin");
+                    link.classList.add("visible");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

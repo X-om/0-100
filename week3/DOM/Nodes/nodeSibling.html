@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+        <h1 class="head">This is Heading</h1>
+        <ul class="items">
+            <li>om</li>
+            <li>vikas</li>
+            <li>argade</li>
+        </ul>
+    </div>
+
+    <button onclick="change()">change</button>
+
+    <script>
+        function change(){
+            const ul = document.querySelector(".items");
+            console.log(ul.parentNode);
+            // patentnode
+            ul.parentNode.style.backgroundColor = "red";
+            
+            // childrenNode
+            ul.children[0].style.backgroundColor = 'white';
+
+            // siblings
+            ul.previousElementSibling.style.backgroundColor = 'yellow';
+        }
+    </script>
+</body>
+</html>

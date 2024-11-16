@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The replaceChild()</h1>
+    <br><br><br>
+    <div id="myList">
+        <li>om</li>
+        <li>asmita</li>
+        <li>sunita</li>
+    </div>
+
+    <p>click on "replace" to change asmita to pooja</p>
+    <button onclick="replace()">replace</button>
+
+    <script>
+        function replace(){
+            const element = document.getElementById("myList").children[1];
+            
+            const newElement = document.createTextNode("pooja");
+
+            element.replaceChild(newElement,element.childNodes[0]);
+        }
+    </script>
+</body>
+</html>

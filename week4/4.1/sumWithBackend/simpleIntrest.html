@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        background-color: rgba(0, 174, 255, 0.299);
+        color: rgb(0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 1000px;
+    }
+</style>
+<body style="display: flex; justify-content: center; align-items: center;">
+        <div class="container">
+            Enter the princinpal : <input type="text" id="1" placeholder="princinpal amount">
+            <br><br><br>
+            Enter the interest rate : <input type="text" id="2" placeholder="interest rate">
+            <br><br><br>
+            Enter the years : <input type="text" id="3" placeholder="number of years">
+            <br><br><br>
+            <button onclick="calculate()">calculate</button>
+            <br><br><br>
+            <div class="ans"></div>
+        </div>
+
+
+        <script>
+            async function calculate(){
+                const princinpal = document.getElementById("1").value;
+                const rate = document.getElementById("2").value;
+                const time = document.getElementById("3").value;
+                const ans = document.querySelector(".ans");
+                
+                const response = await fetch("http://localhost:3000/intrest?princinpal="+ princinpal + "&rate=" + rate + "&time=" + time);
+                const intrest = await response.text();
+
+                ans.innerHTML = intrest;
+            } 
+        </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+<!-- create a button , once click fetches the data from https://fakerapi.it/api/v1/persons  this API/backend -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fetch API</title>
+</head>
+<body>
+    <button onclick="getAnimalData()" id="bt">Fetch Data</button>
+    <center><div id="container"></div></center>
+   
+
+
+  
+    <script>
+        // function getAnimalData(){
+        //     fetch("https://fakerapi.it/api/v1/persons")
+        //     .then(function (response){
+        //         response.json()
+        //         .then(function (finalData){
+        //             console.log(finalData);
+        //         })
+        //     })
+        // }
+
+        async function getAnimalData(){
+            const response = await fetch("https://fakerapi.it/api/v1/persons");
+            const finalData = await response.json();
+            document.getElementById('container').innerHTML = JSON.stringify(finalData.data[8].lastname);
+        }
+    </script>
+
+
+</body>
+
+</html>

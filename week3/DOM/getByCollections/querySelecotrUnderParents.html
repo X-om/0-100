@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <h1>Query selector under parents</h1>
+    
+    <p>This is the paragraph with no parents !</p>
+
+    <div>
+        <p>These are the paragraphs within div 1</p>
+        <p>These are the paragraphs within div 1</p>
+    </div>
+    <br><br><br>
+    <div>
+        <p>These are from within div 2</p>
+        <p>These are from within div 2</p>
+    </div>
+
+    <br><br><br>
+
+    <button onclick="change()">Try me</button>
+
+
+    <script>
+        function change(){
+            let paragraphs = document.querySelectorAll("div > p");
+            paragraphs.forEach(element => {
+                element.style.backgroundColor = "#555";
+                element.style.color = "white";
+            });
+        }
+    </script>
+</body>
+</html>

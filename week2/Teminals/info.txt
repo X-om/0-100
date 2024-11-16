@@ -1,0 +1,42 @@
+1. BASH COMMANDS
+    
+    pwd:
+        shows the directory
+    
+    cd:
+        change directory
+
+    ls:
+        list the files and directories in current directory
+    
+    mkdir:
+        make directory command , creates the directory
+
+    touch:
+        it creates an file with certain extension
+    
+    cat:
+        prints the context of the file
+    
+    =========================================================================
+    vi:
+        its an IDE (VIM) , very complicated you have to work with modes
+        (you can learn it later)
+	this i the line i write from the vim ide which is in terminal
+    =========================================================================
+    mv:  
+        it allows you to move the file from one directory to other
+        command :-> mv info.txt path/to/folder
+
+    cp
+        it lets you copy files
+        command :-> cp info.txt path/to/paste // to copy the file
+                :-> cp -r newFolder path/to/paste // to copy folder
+                  
+    nvm
+
+
+    npm
+
+
+    node

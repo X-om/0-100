@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="box" style="width: 100px; height: 100px; align-items: center; text-align: center">
+            Hi There
+        </div>
+    </div>
+    
+    
+
+    <br><br>
+
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="box" style="width: 100px; height: 100px; align-items: center; text-align: center;">
+            Hi There
+        </div>
+    </div>
+    
+
+    <br><br>
+
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="box" style="width: 100px; height: 100px; align-items: center; text-align: center">
+            Hi There
+        </div>
+    </div>
+    
+    <br><br><br>
+
+
+    <button onclick="change()">change</button>
+
+
+    <script>
+        function change(){
+            const box = document.getElementsByClassName("box");
+
+            for(let i = 0; i < box.length; i++){
+                box[i].style.backgroundColor = "black";
+                box[i].style.color = "white";
+            }
+        }
+    </script>
+</body>
+</html>

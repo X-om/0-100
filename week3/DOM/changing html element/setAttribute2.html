@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inputField" type="text" value="input">
+
+    <p>click on "change" to chnage input filed to chnage it to input button</p>
+    <button onclick="change()">chnage</button>
+    <script>
+        function change(){
+            document.getElementById("inputField").setAttribute("type","button");
+            document.getElementById("inputField").setAttribute("value","Button");
+
+            
+        }    
+    </script>
+</body>
+</html>

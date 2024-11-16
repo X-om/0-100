@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    .main {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      background-color: #303030;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      position: absolute;
+      width: 25%;
+      height: 50%;
+      background-color: rgba(245, 245, 245, 0.372);
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.621);
+    }
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .input {
+      all: unset;
+      width: 200px;
+      height: 25px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.713);
+      padding-left: 10px;
+    }
+    textarea {
+      all: unset;
+      width: 200px;
+      height: 100px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.713);
+      padding-left: 10px;
+    }
+    button {
+      all: unset;
+      width: 100px;
+      height: 30px;
+      background-color: rgb(0, 0, 0);
+      color: rgb(119, 119, 119);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .container2 {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      padding: 30px;
+      top: 0;
+      width: 30vw;
+      height: 100%;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.372);
+      box-shadow: -1px 0 20px 0px rgb(3, 3, 3);
+    }
+    .task {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 10%;
+      margin-top: 20px;
+      background-color: rgb(110, 110, 111);
+      border-radius: 5px;
+      border: 0.5px solid white;
+      box-shadow: 0 0 15px 1px rgba(255, 255, 255, 0.455);
+      overflow: hidden;
+    }
+    .taskHolder {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background-color: #303030;
+    }
+    .title {
+      margin: 0;
+      padding: 0;
+      color: #373737;
+      width: 40%;
+      background-color: rgba(255, 255, 255, 0.302);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .des {
+      margin: 0;
+      padding: 0;
+      background-color: rgb(178, 177, 177);
+      color: #373737;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      height: 100%;
+    }
+    .text {
+      margin: 0;
+      width: 100%;
+      height: 80%;
+      padding-left: 10px;
+    }
+    .btCon{
+        width: 100%;
+        height: 40%;
+        display: flex;
+        padding-left: 65%;        
+    }
+  </style>
+  <body>
+    <div class="main">
+      <div class="container">
+        <div class="inputs">
+          <label for="title">Title : </label>
+          <br />
+          <input class="input" type="text" placeholder="Title" name="title" id="title" />
+        </div>
+        <br /><br />
+        <div class="inputs">
+          <label for="des">Description : </label>
+          <br />
+          <textarea
+            type="text"
+            placeholder="Description"
+            name="des"
+            id="des"
+          ></textarea>
+        </div>
+        <br /><br />
+        <input type="datetime-local">
+        <br><br><br>
+        <button onclick="addToList()">Add To Do</button>
+        
+      </div>
+
+      <div class="container2"></div>
+    </div>
+
+    <script>
+      function addToList() {
+        const textTitle = document.getElementById("title").value.trim();
+        const note = document.getElementById("des").value.trim();
+
+        if (textTitle === "" || note === "") {
+          alert("Please fill in both the Title and Description.");
+          return;
+        }
+
+        const container2 = document.querySelector(".container2");
+
+        // Create task div and set class
+        const task = document.createElement("div");
+        task.setAttribute("class", "task");
+
+        const taskHolder = document.createElement("div");
+        taskHolder.setAttribute("class", "taskHolder");
+
+        const title = document.createElement("div");
+        title.setAttribute("class", "title");
+
+        const h2 = document.createElement("h2");
+        const heading = document.createTextNode(textTitle);
+        h2.appendChild(heading);
+
+        title.appendChild(h2);
+
+        const des = document.createElement("div");
+        des.setAttribute("class", "des");
+
+        const text = document.createElement("div");
+        text.setAttribute("class", "text");
+        const noteNode = document.createTextNode(note);
+        text.appendChild(noteNode);
+
+        des.appendChild(text);
+
+        const buttonContainer = document.createElement("div");
+        buttonContainer.setAttribute("class","btCon");
+        const doneButton = document.createElement("button");
+        doneButton.innerHTML = "Mark as Done";
+        doneButton.style.borderRadius = "5px";
+        doneButton.style.backgroundColor = "rgb(110, 110, 111)";
+        doneButton.style.color = "#373737"
+
+        buttonContainer.appendChild(doneButton);
+
+        // Step 2: Add an event listener to remove the task on click
+        doneButton.onclick = function () {
+          container2.removeChild(task); // Remove the task from the container
+        };
+
+        des.appendChild(buttonContainer); // Append the button inside the task description
+
+        taskHolder.appendChild(title);
+        taskHolder.appendChild(des);
+        task.appendChild(taskHolder);
+        container2.appendChild(task);
+
+        // Clear the input fields after adding the task
+        document.getElementById("title").value = "";
+        document.getElementById("des").value = "";
+      }
+    </script>
+  </body>
+</html>

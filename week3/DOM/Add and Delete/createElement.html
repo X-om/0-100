@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .new{
+        color: red;
+        background-color: black;
+    }
+</style>
+<body>
+    <div>
+        <button onclick="add()">Add</button>
+        <button onclick="Remove()">Remove</button>
+        
+        element No : <input id="elmNo" type="text" value="">
+        <button onclick="replace()">Replace</button>
+    </div>
+    <div id="subBody">
+
+    </div>
+    
+    
+    <script>
+        let num = 1;
+        function add(){
+            const subBody = document.getElementById("subBody");
+            const elm = document.createElement("div");
+            const head = document.createElement("h1");
+            const heading = document.createTextNode(`${num} Hi I'm Om Argade !`);
+            elm.appendChild(head);
+            head.appendChild(heading);
+            subBody.appendChild(elm);
+            num++;
+        }
+        function Remove(){
+            const subBody = document.getElementById("subBody");
+            const list = document.querySelectorAll("div");
+            const elm = list[list.length - 1];
+            subBody.removeChild(elm);
+            num--;   
+        }
+
+        function replace(){
+            const indexString = document.getElementById("elmNo").value;
+            const indexInt = parseInt(indexString);
+            const index = indexInt - 1;
+
+            const element = document.getElementById("subBody").children[index];
+            if(element){
+                const newH1 = document.createElement("h1");
+                const newHeading = document.createTextNode("MY NAME IS OM");
+
+                newH1.appendChild(newHeading);
+                element.replaceChild(newH1,element.childNodes[0]);
+            } else{
+                alert("Invalid Element Number !");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function update(){
+            const value = document.getElementById("btn").innerHTML;
+            const currentValue = value.split(" ")[1];
+            const newValue = parseInt(currentValue) + 1;
+            document.getElementById("btn").innerHTML = "counter " + newValue;
+        }
+    </script>
+    <center>
+        <button onclick="update()" id="btn">counter 0</button>    
+    </center>
+    
+</body>
+</html>

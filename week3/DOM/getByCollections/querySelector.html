@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>Paragraph 1</div>
+    <p>hello world</p>
+    <div>Paragraph 2</div>
+    <p>My name is om</p>
+    <div>Paragraph 3</div>
+    <p>how are you !</p>
+
+    <button onclick="change()">Click Me</button>
+
+
+<script>
+    function change(){    
+        let paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach(p => {
+            p.style.backgroundColor = "black";
+            p.style.color = "white";
+            p.style.fontSize = "50px";
+        });
+    }
+</script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #303030;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputs {
+        width: 100vw;
+        height: 40vh;
+        background-color: #252525;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.27);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        width: 25vw;
+    }
+
+    .in {
+        all: unset;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #666;
+        border-radius: 5px;
+        background-color: #252525;
+        color: whitesmoke;
+        font-size: medium;
+    }
+
+    .in::placeholder {
+        color: rgba(245, 245, 245, 0.577);
+    }
+
+    #descreption {
+        height: 100%;
+    }
+
+    #reminder {
+        color: rgba(245, 245, 245, 0.577);
+    }
+
+    #add {
+        color: rgba(245, 245, 245, 0.577);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: 100px;
+        transition: background-color 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    #add:hover {
+        background-color: #fff200e4;
+        color: black;
+    }
+
+
+    .content {
+        width: 100%;
+        height: 70%;
+        background-color: #202020;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-y: hidden;
+        overflow-x: auto;
+        color: rgba(245, 245, 245, 0.577)
+    }
+
+    .info {
+        width: 20%;
+        height: 70%;
+        background-color: rgba(255, 255, 255, 0.27);
+        margin: 10px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .createdAt {
+        background-color: #252525;
+        width: fit-content;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 10px;
+        font-size: smaller;
+    }
+
+    .title {
+        background-color: #252525;
+        margin: 0 10px 10px 10px;
+        padding: 5px 0 5px 5px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .note {
+        background-color: #252525;
+        height: 60%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px;
+        font-size: medium;
+        font-weight: 100;
+    }
+
+    .markDone {
+        width: 100px;
+        align-self: center;
+        margin: 0 0 10px 0;
+        background-color: #252525;
+        border-radius: 5px;
+        color: rgba(245, 245, 245, 0.577);
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in;
+
+    }
+
+    .markDone:hover {
+        background-color: greenyellow;
+        color: black;
+    }
+    .completedInfo{
+        background-color: #57e120ad;
+    }
+    .completed{
+        background-color: #1a4609ad;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="inputs">
+            <form class="card" id="inputForm">
+                <input class="in" type="text" id="title" placeholder="Title" required>
+                <textarea class="in" id="descreption" placeholder="Write some note" required></textarea>
+                <input class="in" id="reminder" type="datetime-local" required>
+                <button class="in" id="add" type="submit">Add</button>
+            </form>
+        </div>
+
+
+        <div class="content" id="content">
+            <!-- <div class="info">
+                <div class="createdAt">11/09/2024</div>
+                <div class="title">Hello World</div>
+                <div class="note">
+                    align-self: center;: This centers only the button element horizontally within its parent .card.
+                    Other Inputs: By default, flex-direction: column; stacks the other elements vertically, and without
+                    align-self, they stay left-aligned.
+                    Spacing: The margin-bottom: 10px; on .in provides consistent spacing between the input fields.
+                    Now, only the "Add" button will be centered, while the other fields (title, description, reminder)
+                    will stay in their default position
+                </div>
+                <button id="doneBt" class="markDone">mark as done</button> -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        
+        document.getElementById("inputForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const titleElement = document.getElementById("title");
+            const noteElement = document.getElementById("descreption");
+            const reminderElement = document.getElementById("reminder");
+
+            if (this.checkValidity()) {
+                add();
+            }
+            else {
+                this.reportValidity();
+            }
+
+        })
+
+        function createInfo(createdAtText, titleText, noteText, doneState) {
+            const info = document.createElement("div");
+            info.classList.add("info");
+
+            const createdAt = document.createElement("div");
+            createdAt.classList.add("createdAt");
+            createdAt.innerHTML = createdAtText;
+
+            const title = document.createElement("div");
+            title.classList.add("title");
+            title.innerHTML = titleText;
+
+            const note = document.createElement("div");
+            note.classList.add("note");
+            note.innerHTML = noteText;
+
+            const done = document.createElement("button");
+            done.classList.add("markDone");
+            if (doneState == true) {
+                done.innerHTML = "completed !";
+                info.classList.add('completedInfo');
+                createdAt.classList.add('completed');
+                title.classList.add('completed');
+                note.classList.add('completed');
+                done.classList.add('completed');
+            } else {
+                done.innerHTML = "mark as done";
+            }
+
+            info.appendChild(createdAt);
+            info.appendChild(title);
+            info.appendChild(note);
+            info.appendChild(done);
+
+            return info;
+        }
+
+        // getting all existing notes
+        window.onload = async function(){
+            const response = await fetch("http://localhost:3000/getdata",{
+                method : "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("authToken")
+                }
+            });
+
+            const result = await response.json();
+            result.forEach(task => {
+                const parent = document.getElementById("content");
+                const child = createInfo(task.createdAt,task.title,task.note,task.completed);
+                parent.appendChild(child);
+            });
+        }
+
+        async function add() {
+
+            const title = document.getElementById("title").value;
+            const note = document.getElementById("descreption").value;
+            const reminder = document.getElementById("reminder").value;
+            document.getElementById("inputForm").reset();
+
+
+            const task = {
+                title,
+                note,
+                reminder
+            }
+
+            const response = await fetch("http://localhost:3000/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("authToken")
+                },
+                body: JSON.stringify(task)
+            });
+
+            const result = await response.json();
+            console.log(result);
+            if(response.status == 200){
+                const parent = document.getElementById("content");
+                const child = createInfo(result.createdAt,title,note,result.completed);
+                parent.appendChild(child);
+            }
+            else{
+                console.log(result.error);
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

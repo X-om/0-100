@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+
+    <script>
+
+        function createChild(title,descreption,id){
+            const child = document.createElement("div");
+            child.setAttribute("id",`${id}`);
+            
+            const firstGrandParent = document.createElement("div");
+            firstGrandParent.innerHTML = title;
+            child.appendChild(firstGrandParent);
+            
+            const seceondGrandParent = document.createElement("div");
+            seceondGrandParent.innerHTML = descreption;
+            child.appendChild(seceondGrandParent);
+            
+            const thirdGrandParent = document.createElement("button");
+            thirdGrandParent.innerHTML = "Mark as done !";
+            child.appendChild(thirdGrandParent);
+
+            return child;
+        }
+
+        function updateDOM(state){
+            const parent = document.querySelector(".container");
+            parent.innerHTML = "";
+            for(let i = 0; i < state.todos.length; i++){
+                const child = createChild(state.todos[i].title, state.todos[i].descreption, state.todos[i].id);
+                parent.appendChild(child);
+            }
+        }
+
+        window.setInterval(async function(){
+            const response = await fetch("http://localhost:3000/todos");
+            const state = await response.json();
+            updateDOM(state);
+        },5000);
+
+
+    </script>
+</body>
+</html>

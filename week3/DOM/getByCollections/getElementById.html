@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="firstdiv">click here</div>
+    <br>
+    <button onclick="clickme()">click</button>
+    <p id="toInsert"></p>
+    <script>
+        function clickme(){
+            var x = document.getElementById("firstdiv");
+            var y = document.getElementById("toInsert");
+            
+            y.innerText = "Hello Om , Welcome to my page !";
+            
+        }
+    </script>
+</body>
+</html>

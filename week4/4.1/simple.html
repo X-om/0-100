@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url("https://i.pinimg.com/originals/f7/34/56/f73456e151e746f8f2f495e03c1ca3a8.jpg");
+    }
+    .card{
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(247, 0, 255, 0.359);
+        border: 0.1px solid rgb(255, 255, 255);
+        box-shadow: 0px 0px 50px 10px rgb(190, 100, 202);
+        border-radius: 30px;
+    }
+    #a , #b{
+        all: unset;
+        color: rgb(234, 255, 0);
+        cursor: pointer;
+        background-color: rgba(115, 0, 255, 0.318);
+        width: 60%; 
+        height: 8%;
+        border-radius: 1px;
+        box-shadow: 0 0 0 0.5px rgb(255, 255, 255);
+        text-align: center;
+    }
+    button{
+        all: none;
+        cursor: pointer;
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        border: rgb(43, 255, 0);
+        background-color: rgb(255, 242, 0);
+        font-size: larger;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: italic;
+        font-weight: 100;
+    }
+</style>
+<body>
+
+    
+        <div class="card">
+            <h1 style="color: rgb(234, 255, 0);">calculate sum</h1>
+            <br><br>
+            <input type="text" name="" id="a">
+            <br><br>
+            <input type="text" name="" id="b">
+            <br><br>
+            <button onclick="calculate()">calculate</button>
+        </div>
+        <br><br><br>
+
+        <div class="ans" style="color: rgb(217, 255, 0);">
+
+        </div>
+        
+    
+    <script>
+        function calculate(){
+            const a = parseInt(document.querySelector("#a").value);
+            const b = parseInt(document.querySelector("#b").value);
+
+            const ans = document.querySelector(".ans");
+
+            const h1 = document.createElement("h1");
+            const heading = document.createTextNode(`${a+b}`);
+            h1.appendChild(heading);
+            ans.appendChild(h1);
+        }
+    </script>
+</body>
+</html>

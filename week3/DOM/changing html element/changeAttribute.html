@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <div>
+        <img id="image" src="sad.png" alt="smiley">
+        <br><br><br>
+        <button onclick="change()">change mood</button>
+    </div>
+
+<script>
+    num = true;
+    function change(){
+        if(num==true){
+            let img = document.getElementById("image");
+            img.src = "smile.png";
+            num = false;
+        } else {
+            let img = document.getElementById("image");
+            img.src = "sad.png";
+            num = true;
+        }
+
+    }
+</script>
+</body>
+</html>

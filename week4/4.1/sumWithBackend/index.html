@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <input type="text" id="firstNUm"> <br>
+        <input type="text" id="secondNum"> <br>
+        <button id="bt" onclick="calculate()">calculate</button> <br>
+    </div>
+    <br><br>
+    <div class="ans"></div>
+
+    <script>
+         function calculate(){
+            const a = document.getElementById("firstNUm").value;
+            const b = document.getElementById("secondNum").value;
+            const ans = document.querySelector('.ans');
+            fetch("http://localhost:3000/sum?a=" + a + "&b=" + b)
+                .then(function(response){
+                    console.log(response);
+                    response.text()
+                        .then(function(sum){
+                            ans.innerHTML = sum;
+                        })
+
+                        
+                });
+        }
+    </script>
+</body>
+</html>
