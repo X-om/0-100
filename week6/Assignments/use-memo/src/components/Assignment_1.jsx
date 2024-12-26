@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { useMemo, useState } from "react";
 
 
 export function Assignment1(){
 
     const [input,setInput] = useState();
+    const [count,setCount] = useState(0);
 
     let expemsiveValue = useMemo(()=>{
         console.log('expensive loop starts');
@@ -14,7 +16,6 @@ export function Assignment1(){
         return f;
     }, [input]);
 
-    
 
     return (
         <div>
@@ -24,6 +25,10 @@ export function Assignment1(){
                 onChange={(e)=>{setInput(e.target.value)}}
             ></input>
             <p>expensive value {expemsiveValue}</p>
+
+            <button onClick={()=>{
+                setCount(count + 1);
+            }}>count {count}</button>
         </div>
     )
 

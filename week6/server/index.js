@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const { title } = require('process');
 const app = express();
 const port = 8000;
 

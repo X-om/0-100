@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
         {/* <Assignment1/> */}
-        {/* <Assignment2/>*/}
+        {/* <Assignment2/> */}
         <Assignment3/>
     </div>
   )
