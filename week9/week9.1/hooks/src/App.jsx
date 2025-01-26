@@ -8,6 +8,7 @@ import { CustomHooks2 } from './components/CustomHooks2';
 import { CustomHooks3 } from './components/CustomHooks3';
 import { CustomHooks4 } from './components/CustomHooks4';
 import { CustomHooks5 } from './components/CustomHooks5';
+import { SearchBar } from './components/SearchBar';
 
 function App() {
   const [render,setRender] = useState(true);
@@ -27,7 +28,8 @@ function App() {
       {/* <CustomHooks2/> */}
       {/* <CustomHooks3/>  */}
       {/* <CustomHooks4/>  */}
-      <CustomHooks5/>
+      {/* <CustomHooks5/> */}
+      <SearchBar/>
     </> 
   )
 }
