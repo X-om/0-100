@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import './App.css'
+import { ClassLifecycle, Lifecycle, Lifecycle2 } from './components/Lifecycle'
+import CustomHooks from './components/CustomHooks';
+import { CustomHooks2 } from './components/CustomHooks2';
+import { CustomHooks3 } from './components/CustomHooks3';
+import { CustomHooks4 } from './components/CustomHooks4';
+import { CustomHooks5 } from './components/CustomHooks5';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [render,setRender] = useState(true);
+
+  useEffect(()=>{ 
+    const timer = setTimeout(()=> setRender(false) , 10000);
+    return () => clearTimeout(timer);
+  },[])
 
   return (
     <>
-      <Mycomponent/>
-    </>
+      {/* <Mycomponent/> */}
+      {/* <Lifecycle/> */}
+      {/* {render && <><Lifecycle2/></> } */}
+      {/* {render && <ClassLifecycle/> } */}
+      {/* <CustomHooks/> */}
+      {/* <CustomHooks2/> */}
+      {/* <CustomHooks3/>  */}
+      {/* <CustomHooks4/>  */}
+      <CustomHooks5/>
+    </> 
   )
 }
 
