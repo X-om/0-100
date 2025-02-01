@@ -12,11 +12,11 @@ async function createTable(){
     `;
 
     await client.query(createUsersQuery);
-
+ 
     const createTodoQuery = `
         CREATE TABLE IF NOT EXISTS Todos(
             id SERIAL PRIMARY KEY,
-            todo TEXT NOT NULL,
+            title TEXT NOT NULL,
             description TEXT,
             isDone BOOLEAN DEFAULT FALSE,
             user_id INTEGER REFERENCES users(id)
