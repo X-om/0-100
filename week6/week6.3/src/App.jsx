@@ -59,14 +59,14 @@ function App(){
   useEffect(()=>{
     setData1(100);
     setData2(100);
-  },[])
+  },[]);
 
 
   useEffect(()=>{
     setTimeout(() => {
       setFinalData(100);
     }, 5000);
-  })
+  },[]);
   
   
   

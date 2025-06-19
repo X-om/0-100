@@ -87,46 +87,46 @@ function Header({name}){
 
 // ================ using memo
 
-// function App(){
+function App(){
 
-//     const [value,setValue] = useState("om");
-//     const [newVal,setNewval] = useState("Hello This is another state variable");
+    const [value,setValue] = useState("om");
+    const [newVal,setNewval] = useState("Hello This is another state variable");
     
-//     function change(){
-//         setValue(Math.random());
-//     }
+    function change(){
+        setValue(Math.random());
+    }
 
-//     function change2(){
-//         setNewval("Hello This is another state variable " + Math.random());
-//     }
+    function change2(){
+        setNewval("Hello This is another state variable " + Math.random());
+    }
 
-//     return <div>
-//         <button onClick={change}>click me to change the content of the name</button>
-//         <br/><br/><br/><br/><br/><br/><br/>
-//         <button onClick={change2}>click me to change another state variable</button>
-//         <br/><br/><br/><br/><br/><br/><br/>
-//         <Header name = {value}></Header>
-//         <br/><br/>
-//         <Header name= {newVal}></Header> 
-//         <br/><br/>
-//         <Header name= {"Om 2"}></Header> 
-//         <br/><br/>
-//         <Header name= {"Om 3"}></Header> 
-//         <br/><br/>
-//         <Header name= {"Om 4"}></Header> 
-//         <br/><br/>
-//         <Header name= {"Om 5"}></Header> 
-//         <br/><br/>
-//         <Header name= {"Om 6"}></Header>
-//         <br/><br/>
-//     </div>
+    return <div>
+        <button onClick={change}>click me to change the content of the name</button>
+        <br/><br/><br/><br/><br/><br/><br/>
+        <button onClick={change2}>click me to change another state variable</button>
+        <br/><br/><br/><br/><br/><br/><br/>
+        <Header name = {value}></Header>
+        <br/><br/>
+        <Header name= {newVal}></Header> 
+        <br/><br/>
+        <Header name= {"Om 2"}></Header> 
+        <br/><br/>
+        <Header name= {"Om 3"}></Header> 
+        <br/><br/>
+        <Header name= {"Om 4"}></Header> 
+        <br/><br/>
+        <Header name= {"Om 5"}></Header> 
+        <br/><br/>
+        <Header name= {"Om 6"}></Header>
+        <br/><br/>
+    </div>
    
-// }
-// const Header = React.memo(function Header ({name}){
-//     return <>
-//         <h1>My name is {name}</h1>
-//     </>
-// })
+}
+const Header = React.memo(function Header ({name}){
+    return <>
+        <h1>My name is {name}</h1>
+    </>
+})
 
 
 
@@ -247,69 +247,69 @@ function Todo({title,description}){
 
 // Assignment 
 
-function App(){
+// function App(){
 
-    const [todos , setTodos] = useState([]);
+//     const [todos , setTodos] = useState([]);
 
-    function getData(){
-        fetch("http://localhost:8000/todos")
-                .then(async function(res){
-                const newTodos = await res.json();
-                console.log(newTodos.length);
-                setTodos(newTodos)
-            });
-    }
-    useEffect(function(){
-        getData();
-        setInterval(()=>{
-            getData();
-        },10000)
-    },[]); 
+//     function getData(){
+//         fetch("http://localhost:8000/todos")
+//                 .then(async function(res){
+//                 const newTodos = await res.json();
+//                 console.log(newTodos.length);
+//                 setTodos(newTodos)
+//             });
+//     }
+//     useEffect(function(){
+//         getData();
+//         setInterval(()=>{
+//             getData();
+//         },10000)
+//     },[]); 
 
-    return (
-        <div>
-            {
-                todos.map(todo => (
-                    <CardWrapper>
-                        <Todo key={todo.id} title={todo.title} description={todo.description}/>
-                    </CardWrapper> 
-                ))
-            }
-        </div>
-    )
+//     return (
+//         <div>
+//             {
+//                 todos.map(todo => (
+//                     <CardWrapper>
+//                         <Todo key={todo.id} title={todo.title} description={todo.description}/>
+//                     </CardWrapper> 
+//                 ))
+//             }
+//         </div>
+//     )
         
-}
+// }
 
-function CardWrapper({children}){
-    return (
-        <div 
-        style={{
-            padding: "10px",
-            width : "fit-content",
-            backgroundColor : "beige",
-            border : "1px solid black",
-            borderRadius : "10px",
-            justifyContent: "center",
-            alignItems : "center",
-            marginBottom : "10px"
-        }}
-        >
-        {children}
-        </div>
-    )
-}
+// function CardWrapper({children}){
+//     return (
+//         <div 
+//         style={{
+//             padding: "10px",
+//             width : "fit-content",
+//             backgroundColor : "beige",
+//             border : "1px solid black",
+//             borderRadius : "10px",
+//             justifyContent: "center",
+//             alignItems : "center",
+//             marginBottom : "10px"
+//         }}
+//         >
+//         {children}
+//         </div>
+//     )
+// }
 
 
-function Todo({title,description}){
-    return (
-        <div style={{
-           padding : "5px"
-        }}>
-            <h1>Title : {title}</h1>
-            <h2>Description : {description}</h2>
-        </div>
-    )
-}
+// function Todo({title,description}){
+//     return (
+//         <div style={{
+//            padding : "5px"
+//         }}>
+//             <h1>Title : {title}</h1>
+//             <h2>Description : {description}</h2>
+//         </div>
+//     )
+// }
 
 
 export default App;

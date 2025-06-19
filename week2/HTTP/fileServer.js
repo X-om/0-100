@@ -66,6 +66,7 @@ app.get("/files" , (req,res)=>{
 
 app.get("/files/:fileName",function(req,res){
     const name = req.params.fileName;
+    console.log(name)
     let result;
     displayContent(name).then(function(value){
         // res.send(typeof(value));

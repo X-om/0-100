@@ -51,7 +51,7 @@ app.post("/conversations",function(req,res){
 });
 
 
-// this function actualy sends all the resposes
+// this function actualy sends all the resposes and receives all the requests 
 app.listen(port,function(){
     console.log(`The response is running on port localhost:${port}`)
 });

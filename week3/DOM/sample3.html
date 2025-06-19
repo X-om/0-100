@@ -8,9 +8,17 @@
 <body>
     <script>
         window.onload = () =>{
-            const elm = document.createElement("p");
-            elm.innerText = "Hello World My Name Is Om Argade !";
-            document.body.appendChild(elm);
+            const text = document.createElement("div");
+            text.innerHTML = "Wait for 2 seconds";
+            document.body.appendChild(text);
+            
+            setTimeout(()=>{
+                document.body.removeChild(text);
+                const elm = document.createElement("p");
+                elm.innerText = "Hello World My Name Is Om Argade !";
+                document.body.appendChild(elm);
+            },2000);
+            
         }
     </script>
 </body>

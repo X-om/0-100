@@ -18,6 +18,9 @@
         
         element No : <input id="elmNo" type="text" value="">
         <button onclick="replace()">Replace</button>
+
+        element No : <input id="elmNo2" type="text" value="">
+        <button onclick="removeElementByNumber()">Remove</button>
     </div>
     <div id="subBody">
 
@@ -59,6 +62,17 @@
             } else{
                 alert("Invalid Element Number !");
             }
+        }
+
+        function removeElementByNumber(){
+            const subBody = document.getElementById("subBody");
+            const subBodyElements = document.getElementById("subBody").childNodes;
+            console.log(subBodyElements);
+            let removeNumber = document.getElementById("elmNo2").value;
+            removeNumber = parseInt(removeNumber);
+            const index = removeNumber - 1;
+            const element = subBodyElements[index];
+            subBody.removeChild(element);
         }
     </script>
 </body>

@@ -9,7 +9,7 @@ async function insertIntoTable(){
     // const response = await client.query(userInsertQuery,userInputs);
 
     const todoInsertQuery = `INSERT INTO Todos (title, description, isDone, user_id) VALUES ($1, $2, $3, $4) RETURNING id`;
-    const todoInput = ['give BJ','to om',false,2];
+    const todoInput = ['give 1000','to om',false,2];
     await client.query(todoInsertQuery,todoInput);
 
     console.log('data inserted successfully');

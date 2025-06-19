@@ -21,7 +21,7 @@ async function updateUserInfo(email : string, userId : number){
 async function updatedUsersTodoInfo(todoId : number){
     const client = await getClient();
     const updateTodoQuery = `UPDATE Todos SET title = $1, description = $2, isDone = $3 WHERE id = $4`;
-    const values = ['kiss','kiss Asmita', true, 1];
+    const values = ['kiss','kiss Asmita', true, todoId];
 
     await client.query(updateTodoQuery,values);
     console.log('updated successfully');

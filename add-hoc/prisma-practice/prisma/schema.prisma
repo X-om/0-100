@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  customerId Int     @id @default(autoincrement())
+  fname      String
+  lname      String
+  address    String
+  phone      String
+  email      String  @unique
+  orders     OrderHeader[]
+  payments   Payment[]
+}
+
+model OrderHeader {
+  orderId    Int          @id @default(autoincrement())
+  orderDate  DateTime     @default(now())
+  customerId Int
+  customer   Customer     @relation(fields: [customerId], references: [customerId])
+  orderLines OrderLine[]
+  payments   Payment[]
+  deliveries Delivery[]
+}
+
+model OrderLine {
+  id        Int         @id @default(autoincrement())
+  orderId   Int
+  pizzaId   Int
+  quantity  Int         @default(0)
+  order     OrderHeader @relation(fields: [orderId], references: [orderId])
+  pizza     Pizza       @relation(fields: [pizzaId], references: [pizzaId])
+}
+
+model Payment {
+  paymentId  Int        @id @default(autoincrement())
+  pDate      DateTime
+  type       PType      @default(COD)
+  orderId    Int
+  customerId Int
+  total      Int
+  order      OrderHeader @relation(fields: [orderId], references: [orderId])
+  customer   Customer    @relation(fields: [customerId], references: [customerId])
+}
+
+model Delivery {
+  deliveryId Int         @id @default(autoincrement())
+  orderId    Int
+  type       DType       @default(STATE)
+  status     Boolean     @default(false)
+  dispatcher DateTime
+  arrival    DateTime
+  order      OrderHeader @relation(fields: [orderId], references: [orderId])
+}
+
+model Pizza {
+  pizzaId      Int         @id @default(autoincrement())
+  name         String
+  specification String
+  price        Int
+  orders       OrderLine[]
+}
+
+enum PType {
+  COD
+  UPI
+  CREDIT_CARD
+  DEBIT_CARD
+}
+
+enum DType {
+  INTERNATIONAL
+  LOCAL
+  STATE
+  NATIONAL
+}
